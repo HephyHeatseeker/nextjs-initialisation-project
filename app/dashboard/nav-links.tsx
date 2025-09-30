@@ -1,5 +1,5 @@
 'use client';
- 
+
 import {
   UserGroupIcon,
   HomeIcon,
@@ -8,15 +8,26 @@ import {
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
- 
-// ...
- 
+
+// Define the type for a link
+type NavLink = {
+  name: string;
+  href: string;
+  icon: React.ComponentType<{ className?: string }>;
+};
+
+const links: NavLink[] = [
+  { name: 'Home', href: '/', icon: HomeIcon },
+  { name: 'Users', href: '/users', icon: UserGroupIcon },
+  { name: 'Documents', href: '/documents', icon: DocumentDuplicateIcon },
+];
+
 export default function NavLinks() {
   const pathname = usePathname();
- 
+
   return (
     <>
-      {links.map((link) => {
+      {links.map((link: NavLink) => {
         const LinkIcon = link.icon;
         return (
           <Link
